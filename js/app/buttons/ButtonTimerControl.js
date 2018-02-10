@@ -3,6 +3,7 @@ class ButtonTimerControl extends Button {
         super();
         this.isOn = true;
         this.timer = pTimer;
+        this.html.setAttribute('id', 'controller')
         this.onClick();
     }
 
@@ -15,6 +16,5 @@ class ButtonTimerControl extends Button {
             this.timer.stop();
             this.html.innerHTML = "Play";
         }
-
     }
 }
