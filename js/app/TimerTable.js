@@ -60,7 +60,7 @@ class TimerTable {
                 if (typeof this.content[i][j] == "object") {
                     Tools.applyToArray(this.content[i][j], function(pObject) {
                         data.appendChild(pObject);
-                    });//data.appendChild(this.content[i][j]);
+                    });
                 } else {
                     data.innerHTML = this.content[i][j];
                 }

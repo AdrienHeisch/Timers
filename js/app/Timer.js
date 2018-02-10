@@ -37,7 +37,7 @@ class Timer {
         this.htmlTimeDisplay.innerHTML = Time.toString(new Date(this.time));
 
         var timeGoal = Time.strToMs(this.htmlGoalInput.value)
-        if (this.time >= timeGoal/60 && timeGoal != 0) {
+        if (this.time >= timeGoal && timeGoal != 0) {
             if (this.htmlIsDone.getAttribute("src") != "img/isOk.png") {
                 this.htmlIsDone.setAttribute("src", "img/isOk.png");
                 this.isDone = true;
