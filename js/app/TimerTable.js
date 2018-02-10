@@ -8,6 +8,10 @@ class TimerTable {
         this.generate();
     }
 
+    /**
+     * 
+     * @param {String} pName 
+     */
     addTimer(pName) {
         var lTimer = new Timer(pName);
         this.list.push(lTimer);
@@ -30,14 +34,14 @@ class TimerTable {
 
     generateContent() {
         this.content = [
-            ["Timer Name", "Time Spent Today", "Daily Goal", "Goal Reached ?", "Play / Stop"]
+            ["Timer Name", "Time Spent Today", "Daily Goal", "Goal Reached ?", "Control"]
         ];
         var lLength = this.list.length;
         var lTimer;
         for (var i = 0; i < lLength; i++) {
             lTimer = this.list[i];
             this.content.push([
-                lTimer.name, lTimer.htmlTimeDisplay, lTimer.htmlObjectiveInput, lTimer.htmlIsDone, lTimer.htmlButton
+                lTimer.name, lTimer.htmlTimeDisplay, lTimer.htmlGoalInput, lTimer.htmlIsDone, [lTimer.htmlButtonControl, lTimer.htmlButtonReset]
             ]);
         }
         this.content.push([new ButtonTimerAdd(this).html, "--:--:--", "--:--:--", "-", "-"]);
@@ -54,7 +58,9 @@ class TimerTable {
             for (j = 0; j < this.content[i].length; j++) {
                 row.appendChild(data = document.createElement("td"));
                 if (typeof this.content[i][j] == "object") {
-                    data.appendChild(this.content[i][j]);
+                    Tools.applyToArray(this.content[i][j], function(pObject) {
+                        data.appendChild(pObject);
+                    });//data.appendChild(this.content[i][j]);
                 } else {
                     data.innerHTML = this.content[i][j];
                 }

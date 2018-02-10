@@ -1,9 +1,12 @@
 class ButtonTimerAdd extends Button {
+    /**
+     * 
+     * @param {TimerTable} pTimerTable 
+     */
     constructor(pTimerTable) {
         super();
         this.timerTable = pTimerTable;
         this.html.innerHTML = "Add Timer";
-        this.html.setAttribute("id", "adder");
     }
 
     onClick() {

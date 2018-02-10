@@ -1,9 +1,12 @@
 class ButtonTimerControl extends Button {
+    /**
+     * 
+     * @param {Timer} pTimer 
+     */
     constructor(pTimer) {
         super();
-        this.isOn = true;
         this.timer = pTimer;
-        this.html.setAttribute('id', 'controller')
+        this.isOn = true;
         this.onClick();
     }
 

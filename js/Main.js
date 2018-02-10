@@ -2,13 +2,9 @@ class Main {
     constructor() {
         this.timerTable = new TimerTable();
         this.addChild(this.timerTable);
-        this.timerTable.addTimer("Test");
-        /*window.onbeforeunload = function() {
-            return "Sure ?";
-        }*/
+        this.timerTable.addTimer("A Timer");
 
         this.onFrame();
-        //this.timerTable.refresh();
     }
 
     onFrame() {
@@ -16,6 +12,10 @@ class Main {
         requestAnimationFrame(this.onFrame.bind(this));
     }
     
+    /**
+     * 
+     * @param {HTMLElement} pHTMLElement 
+     */
     addChild(pHTMLElement) {
         if (pHTMLElement.html.length == undefined) {
             document.body.appendChild(pHTMLElement.html);
