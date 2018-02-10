@@ -2,16 +2,18 @@ class Timer {
     /**
      * 
      * @param {String} pName 
+     * @param {TimerTable} pTable 
      */
-    constructor(pName) {
+    constructor(pName, pTable) {
         this.name = pName;
+        this.table = pTable;
         
         this.time = 0;
         this.refTime = Date.now();
         this.storage = 0;
         this.isPlaying = false;
 
-        this.htmlName = document.createElement("p");
+        this.htmlName = new ButtonTimerRemove(this).html;
         this.htmlTimeDisplay = document.createElement("p");
         this.htmlGoalInput = document.createElement("input");
         this.htmlGoalInput.setAttribute("type", "time");

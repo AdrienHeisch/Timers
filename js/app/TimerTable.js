@@ -13,8 +13,19 @@ class TimerTable {
      * @param {String} pName 
      */
     addTimer(pName) {
-        var lTimer = new Timer(pName);
+        var lTimer = new Timer(pName, this);
         this.list.push(lTimer);
+        this.generate();
+    }
+
+    /**
+     * 
+     * @param {Timer} pTimer 
+     */
+    removeTimer(pTimer) {
+        console.log(this.list);
+        this.list.splice(this.list.indexOf(pTimer), 1);
+        console.log(this.list);
         this.generate();
     }
 
@@ -41,7 +52,7 @@ class TimerTable {
         for (var i = 0; i < lLength; i++) {
             lTimer = this.list[i];
             this.content.push([
-                lTimer.name, lTimer.htmlTimeDisplay, lTimer.htmlGoalInput, lTimer.htmlIsDone, [lTimer.htmlButtonControl, lTimer.htmlButtonReset]
+                lTimer.htmlName, lTimer.htmlTimeDisplay, lTimer.htmlGoalInput, lTimer.htmlIsDone, [lTimer.htmlButtonControl, lTimer.htmlButtonReset]
             ]);
         }
         this.content.push([new ButtonTimerAdd(this).html, "--:--:--", "--:--:--", "-", "-"]);
