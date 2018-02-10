@@ -32,10 +32,10 @@ class Timer {
         
         if (this.time >= this.htmlObjectiveInput.value) {
             if (!(this.isDone)) {
-                this.htmlIsDone.setAttribute("src", "../img/isOk.png");
+                this.htmlIsDone.setAttribute("src", "img/isOk.png");
             }
         } else if (this.isDone) {
-            this.htmlIsDone.setAttribute("src", "../img/notOk.png");
+            this.htmlIsDone.setAttribute("src", "img/notOk.png");
         }
     }
 
