@@ -8,6 +8,8 @@ class ButtonTimerAdd extends Button {
 
     onClick() {
         var lInput = prompt("Name : ", "Timer");
-        this.timerTable.addTimer(lInput);
+        if (lInput != null && lInput != "") {
+            this.timerTable.addTimer(lInput);
+        }
     }
 }

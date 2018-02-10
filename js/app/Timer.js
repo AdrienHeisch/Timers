@@ -6,12 +6,19 @@ class Timer {
         this.refTime = Date.now();
         this.storage = 0;
 
-        this.displayTime = 0;
+        this.isDone = true;
+
+        this.htmlName = document.createElement("p");
+        this.htmlTimeDisplay = document.createElement("p");
+        this.htmlObjectiveInput = document.createElement("input");
+        this.htmlObjectiveInput.setAttribute("type", "time");
+        this.htmlIsDone = document.createElement("img");
+        this.htmlIsDone.setAttribute("src", "../img/notOk.png");
+        this.htmlButton = new ButtonTimerControl(this).html;
+        
+
         this.doPlay();
         this.refresh = function(){};
-
-        var button = new ButtonTimerControl(this);
-        this.HTMLButton = button.html;
     }
 
     play() {
@@ -21,7 +28,15 @@ class Timer {
 
     doPlay() {
         this.time = this.storage + Date.now() - this.refTime;
-        this.displayTime = Time.toString(new Date(this.time));
+        this.htmlTimeDisplay.innerHTML = Time.toString(new Date(this.time));
+        
+        if (this.time >= this.htmlObjectiveInput.value) {
+            if (!(this.isDone)) {
+                this.htmlIsDone.setAttribute("src", "../img/isOk.png");
+            }
+        } else if (this.isDone) {
+            this.htmlIsDone.setAttribute("src", "../img/notOk.png");
+        }
     }
 
     stop() {

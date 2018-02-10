@@ -3,11 +3,12 @@ class Main {
         this.timerTable = new TimerTable();
         this.addChild(this.timerTable);
         this.timerTable.addTimer("Test");
-        window.onbeforeunload = function() {
+        /*window.onbeforeunload = function() {
             return "Sure ?";
-        }
+        }*/
 
         this.onFrame();
+        //this.timerTable.refresh();
     }
 
     onFrame() {

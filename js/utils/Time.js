@@ -10,7 +10,7 @@ class Time {
 
     static toString(pDate) {
         var lArray = Time.toArray(pDate);
-        return lArray[0] + ":" + lArray[1] + ":" + lArray[2];
+        return String(lArray[0] + ":" + lArray[1] + ":" + lArray[2]);
     }
 
     static toArray(pDate) {
