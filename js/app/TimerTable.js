@@ -5,15 +5,16 @@ class TimerTable {
         this.content = [];
         this.list = [];
 
-        this.generate();
+        if (localStorage.getItem("data")) this.load();
+        else this.generate();
     }
 
     /**
      * 
-     * @param {String} pName 
+     * @param {Array} pData 
      */
-    addTimer(pName) {
-        var lTimer = new Timer(pName, this);
+    addTimer(pData) {
+        var lTimer = new Timer(pData);
         this.list.push(lTimer);
         this.generate();
     }
@@ -23,9 +24,32 @@ class TimerTable {
      * @param {Timer} pTimer 
      */
     removeTimer(pTimer) {
-        console.log(this.list);
         this.list.splice(this.list.indexOf(pTimer), 1);
-        console.log(this.list);
+        this.generate();
+    }
+
+    save() {
+        this.generateContent();
+        var lDataString = "{";
+        var lLength = this.list.length;
+        for (var i = 0; i < lLength; i++) {
+            lDataString += '"timer' + i + '":"[' + this.list[i].getData() + ']"';
+            if (i < lLength - 1) lDataString += ",";
+        }
+        lDataString += "}";
+        localStorage.setItem("data", lDataString);
+        console.log('saved')
+    }
+
+    load() {
+        this.list = [];
+        var lDataObject = JSON.parse(localStorage.getItem("data"));
+        var lLength = Object.keys(lDataObject).length;
+        var lTimer;
+        for (var i = 0; i < lLength; i++) {
+            this.addTimer(Tools.stringToArray(lDataObject["timer" + i]));
+        }
+        
         this.generate();
     }
 
@@ -34,6 +58,10 @@ class TimerTable {
         var lLength = this.list.length;
         for (var i = 0; i < lLength; i++) {
             lTimer = this.list[i];
+            if (lTimer.isDeleted) {
+                this.removeTimer(lTimer);
+                return;
+            }
             lTimer.refresh();
         }
     }

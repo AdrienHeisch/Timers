@@ -13,4 +13,12 @@ class Tools {
         }
         else pFunction(pObject);
     }
+
+    /**
+     * 
+     * @param {String} pString 
+     */
+    static stringToArray(pString) {
+        return (pString.substring(1, pString.length - 1)).split(",");
+    }
 }

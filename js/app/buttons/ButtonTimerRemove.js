@@ -10,6 +10,6 @@ class ButtonTimerRemove extends Button {
     }
 
     onClick() {
-        if (confirm('Do you want to remove the "' + this.timer.name + '" timer ?')) this.timer.table.removeTimer(this.timer);
+        if (confirm('Do you want to remove the "' + this.timer.name + '" timer ?')) this.timer.destroy();
     }
 }
