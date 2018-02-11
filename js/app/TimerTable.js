@@ -38,7 +38,6 @@ class TimerTable {
         }
         lDataString += "}";
         localStorage.setItem("data", lDataString);
-        console.log('saved')
     }
 
     load() {

@@ -6,7 +6,6 @@ class ButtonTimerRemove extends Button {
     constructor(pTimer) {
         super();
         this.timer = pTimer;
-        this.html.innerHTML = pTimer.name;
     }
 
     onClick() {

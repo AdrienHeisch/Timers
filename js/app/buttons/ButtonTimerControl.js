@@ -6,8 +6,8 @@ class ButtonTimerControl extends Button {
     constructor(pTimer) {
         super();
         this.timer = pTimer;
-        this.isOn = true;
-        this.onClick();
+        this.isOn = false;
+        this.html.innerHTML = "Play";
     }
 
     onClick() {

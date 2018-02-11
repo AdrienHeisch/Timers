@@ -4,20 +4,17 @@ class Timer {
      * @param {Array} pData 
      */
     constructor(pData) {
-        this.name = (pData[0] ? pData[0] : "");
-        
         this.time = 0;
         this.refTime = Date.now();
         this.storage = 0;
         this.isPlaying = false;
         this.isDeleted = false;
 
+
         this.htmlName = new ButtonTimerRemove(this).html;
         this.htmlTimeDisplay = document.createElement("p");
-
         this.htmlGoalInput = document.createElement("input");
         this.htmlGoalInput.setAttribute("type", "time");
-        if (pData[2]) this.htmlGoalInput.setAttribute("value", pData[2]);
 
         this.htmlIsDone = document.createElement("img");
         this.htmlIsDone.setAttribute("src", "img/notOk.png");
@@ -26,15 +23,44 @@ class Timer {
 
         this.htmlButtonControl = new ButtonTimerControl(this).html;
         this.htmlButtonReset = new ButtonTimerReset(this).html;
-        
-        if (pData[1]) this.storage = Number(pData[1]);
 
+        this.loadData(pData);
         this.doPlay();
         this.refresh = function(){};
     }
 
+    /**
+     * @param {String} pString
+     */
+    set name(pString) {
+        this.htmlName.innerHTML = pString;
+    }
+    get name() {
+        return this.htmlName.innerHTML;
+    }
+
+    /**
+     * @param {Number} pNumber
+     */
+    set goal(pNumber) {
+        this.htmlGoalInput.setAttribute("value", pNumber);
+    }
+    get goal() {
+        return this.htmlGoalInput.getAttribute("value");
+    }
+
     getData() {
-        return [this.name, this.time, this.htmlGoalInput.value];
+        return [this.name, this.time, this.goal];
+    }
+
+    /**
+     * 
+     * @param {Array} pData 
+     */
+    loadData(pData) {
+        this.name = pData[0];
+        this.time = pData[1];
+        this.goal = pData[2];
     }
 
     play() {
